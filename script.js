@@ -134,30 +134,29 @@ function buyWeapon() {
     } else if (currentWeaponIndex === 3) {
       button2.innerText = "Sell weapon for 15 gold";
       text.innerText = "You already have the most powerful weapon!";
-    } /*else  if (currentWeaponIndex === 4) {
-      button2.onclick = sellWeapon();
-    }*/
+      button2.onclick = sellWeapon;
+    } 
   } else {
     text.innerText = "You do not have enough gold to buy a weapon.";
   }
 }
 
-/*function sellWeapon() {
-  if (inventory.length > 0) {
+function sellWeapon() {
+  if (currentWeaponIndex > 0) {
     let soldWeapon = inventory.pop();
     gold += 15;
     goldText.innerText = gold;
     text.innerText = "You have sold your " + soldWeapon + ". Now you have: " + inventory;
+    }
     
-    if (currentWeaponIndex > 0) {
-      currentWeaponIndex -= 1;
+  if (currentWeaponIndex === 0) {
+      text.innerText = "You can't sell your only weapon.";
     }
 
-    if (inventory.length === 0) {
-      text.innerText = "You can't sell your stick.";
+  if (currentWeaponIndex > 0) {
+      currentWeaponIndex -= 1;
     }
-  }
-}*/
+}
 
 function fightSlime() {
   update(locations[3]);
@@ -205,10 +204,28 @@ function attack(monsterNumber) {
     monsterStats.style.display = "none";
     monsters[monsterNumber].health = monsters[monsterNumber].originalHealth; 
     monsterHealth.innertext = monsters[monsterNumber].originalHealth
+
+    if (monsterNumber === 0) {
     xp += 2;
     xpText.innerText = xp;
-    gold += 1300;
+    gold += 13;
     goldText.innerText = gold;
+    }
+
+    if (monsterNumber === 1) {
+    xp += 8;
+    xpText.innerText = xp;
+    gold += 53;
+    goldText.innerText = gold;
+    }
+
+    if (monsterNumber === 2) {
+    xp += 32;
+    xpText.innerText = xp;
+    gold += 212;
+    goldText.innerText = gold;
+    }
+
     update(locations[6]);
   }
 
@@ -273,28 +290,3 @@ function easterEgg8() {
     text.innerText = "You picked 8. Here are the random numbers:\n" + numbers.join("") + "Wrong! You lose 10 health!";
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
